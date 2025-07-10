@@ -10,6 +10,11 @@ import AddCoffee from './pages/AddCoffee';
 import UpdateCoffee from './pages/UpdateCoffee';
 import ErrorPages from './pages/ErrorPages';
 import CoffeeDetails from './components/CoffeeDetails';
+import Login from './components/Login';
+import Register from './components/Register';
+import AuthProvider from './Provider/AuthProvider';
+import { ToastContainer } from 'react-toastify';
+import Users from './components/Users';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +37,19 @@ const router = createBrowserRouter([
     loader: ({ params }) => fetch(`http://localhost:5000/coffees/${params.id}`)
   },
   {
+    path: "login",
+    element: <Login></Login>
+  },
+  {
+    path: 'register',
+    element: <Register></Register>
+  },
+  {
+    path: 'users',
+    element: <Users></Users>,
+    loader: () => fetch('http://localhost:5000/users')
+  },
+  {
     path: "*",
     element: <ErrorPages></ErrorPages>
   }
@@ -39,6 +57,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+    <ToastContainer />
   </StrictMode>,
 )

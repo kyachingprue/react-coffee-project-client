@@ -43,7 +43,7 @@ const Coffees = ({ coffee, coffees, setCoffees }) => {
   return (
     <div className='grid grid-cols-12 bg-slate-200 rounded-xl p-3 items-center mx-auto gap-2'>
       <div className='col-span-4'>
-        <img className='w-44' src={photo} alt="" />
+        <img className='w-48 h-32' src={photo} alt="" />
       </div>
       <div className='col-span-6 space-y-3'>
         <p className='text-black'>Name: <span className='text-gray-500'>{name}</span></p>
